@@ -3,7 +3,7 @@ import { getResults } from "../services/storage";
 
 function Results() {
 
-  const [result, setResults] = useState([]);
+  const [results, setResults] = useState([]);
 
   useEffect(() => {
     setResults(getResults());
@@ -14,7 +14,7 @@ function Results() {
 
       <h1>Historia wyników</h1>
 
-      {result.map(r => (
+      {results.map(r => (
         <div
           key={r.id}>
 
