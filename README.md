@@ -10,3 +10,5 @@ quizlist attempt
 quizlist + localstorage for pushing quizzes
 # --- v. 0.06 ---
 quizcreator attempt
+# --- v. 0.07 ---
+results + storage, layout fix needed
