@@ -19,7 +19,7 @@ function QuizList() {
   };
 
   return (
-    <div className="mx-auto max-w-md">
+    <div className="mx-auto w-fit flex flex-col items-center">
       <h1 className="text-3xl font-bold mb-4 flex justify-center">Quizy</h1>
 
       <div className="mb-6 flex gap-3">
