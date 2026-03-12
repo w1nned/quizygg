@@ -43,12 +43,12 @@ function QuizList() {
           <div className="mt-3 flex gap-3">
 
             <Link
-              to={`/quiz/${q.id}`} className="bg-green-500 text-white px-3 py-1 rounded">
+              to={`/quiz/${q.id}`} className="bg-green-500 text-green-200 px-3 py-1 rounded font-bold hover:scale-110 hover:text-white">
               Rozwiąż
             </Link>
 
             <button
-              onClick={() => deleteQuiz(q.id)} className="bg-red-500 text-white px-3 py-1 rounded">
+              onClick={() => deleteQuiz(q.id)} className="bg-red-500 text-red-900 px-3 py-1 rounded font-bold hover:scale-110 hover:text-gray-900">
               Usuń
             </button>
 
