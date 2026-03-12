@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { getQuizzes, getResults, saveResults } from "../services/storage";
+import { useNavigate} from "react-router-dom";
 
 function QuizPlayer() {
 
@@ -9,6 +10,8 @@ function QuizPlayer() {
   const quiz = getQuizzes().find(q => q.id == id);
 
   const [answers, setAnswers] = useState({});
+
+  const navigate = useNavigate();
 
   const submitQuiz = () => {
 
@@ -37,8 +40,8 @@ function QuizPlayer() {
 
     saveResults(results);
 
-    alert(`Twój wynik: ${percent}%`);
-
+    alert(`Twój wynik: ${score}/${quiz.questions.length} (${percent}%) `);
+    navigate("/");
   };
 
   return (
