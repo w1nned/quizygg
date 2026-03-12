@@ -18,7 +18,7 @@ function QuizPlayer() {
 
   const q = questions[currentQuestion];
 
-  // Kolory kafelków
+
   const colors = ["#FF4C4C", "#4C6EFF", "#4CFF88", "#9D4CFF"];
 
   const selectAnswer = (index) => {
@@ -70,8 +70,8 @@ function QuizPlayer() {
 
   return (
     <div style={styles.container}>
-      <h1 style={styles.quizTitle}>{quiz.title}</h1>
-      <h2 style={styles.question}>{q.question}</h2>
+      <h3 style={styles.quizTitle}>{quiz.title}</h3>
+      <h1 style={styles.question}>{q.question}</h1>
 
       <div style={styles.options}>
         {q.options.slice(0, 4).map((opt, i) => {
@@ -100,11 +100,25 @@ function QuizPlayer() {
 }
 
 const styles = {
-  
+  progress:{
+    textAlign:"center"
+  },
+  quizTitle:{
+    textAlign:"center"
+  },
+  question:{
+    textAlign: "center",
+  marginBottom: "30px"
+  },
+  container:{
+    width: "85vw",
+    textAlign:"center"
+  },
   options: {
+    marginTop: "200px",
     display: "grid",
     gridTemplateColumns: "repeat(2, 1fr)", 
-    gap: "20px",
+    gap: "40px",
     width: "100%",
     marginBottom: "30px",
   },

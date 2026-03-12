@@ -7,7 +7,7 @@ import Results from "./components/Results";
 function App() {
   return (
     <BrowserRouter>
-      <div className="p-6 max-w-3xl mx-auto">
+      <div className="p-6 mx-auto">
 
         <Routes>
           <Route path="/" element={<QuizList />} />
