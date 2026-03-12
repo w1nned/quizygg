@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getQuizzes, saveQuizzes } from "../services/storage";
 
+
 function QuizList() {
 
   const [quizzes, setQuizzes] = useState([]);
