@@ -21,42 +21,65 @@ function QuizCreator() {
 
   const addQuestion = () => {
 
-    if (!text) return;
+  if (!text.trim()) {
+    alert("Treść pytania jest wymagana");
+    return;
+  }
 
-    const q = {
-      id: Date.now(),
-      type,
-      question: text,
-      options: type === "single" ? options : ["Prawda", "Fałsz"],
-      correct
-    };
+  if (type === "single") {
 
-    setQuestions([...questions, q]);
+    const emptyOption = options.some(opt => !opt.trim());
 
-    setText("");
-    setOptions(["", "", "", ""]);
-
-  };
-
-  const saveQuiz = () => {
-
-    if (questions.length === 0) {
-      alert("Dodaj przynajmniej jedno pytanie");
+    if (emptyOption) {
+      alert("Uzupełnij wszystkie odpowiedzi");
       return;
     }
 
-    const quizzes = getQuizzes();
+  }
 
-    quizzes.push({
-      id: Date.now(),
-      title,
-      description,
-      questions
-    });
-
-    saveQuizzes(quizzes);
-    navigate("/");
+  const q = {
+    id: Date.now(),
+    type,
+    question: text,
+    options: type === "single" ? options : ["Prawda", "Fałsz"],
+    correct
   };
+
+  setQuestions([...questions, q]);
+
+  setText("");
+  setOptions(["", "", "", ""]);
+};
+
+  const saveQuiz = () => {
+
+  if (!title.trim()) {
+    alert("Podaj nazwę quizu");
+    return;
+  }
+
+  if (!description.trim()) {
+    alert("Podaj opis quizu");
+    return;
+  }
+
+  if (questions.length === 0) {
+    alert("Dodaj przynajmniej jedno pytanie");
+    return;
+  }
+
+  const quizzes = getQuizzes();
+
+  quizzes.push({
+    id: Date.now(),
+    title,
+    description,
+    questions
+  });
+
+  saveQuizzes(quizzes);
+  navigate("/");
+};
 
   return (
     <div>
