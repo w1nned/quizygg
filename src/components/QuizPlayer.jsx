@@ -37,7 +37,7 @@ function QuizPlayer() {
 
     saveResults(results);
 
-    alert(`Twój wynik: ${percent}%`);
+    alert(`Wynik: ${score}/${quiz.questions.length} (${percent}%)`);
 
   };
 

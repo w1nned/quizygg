@@ -19,7 +19,7 @@ function Results() {
           key={r.id}>
 
           Quiz: {r.quizId} <br />
-          Wynik: {r.score}/{r.total} ({r.percent}%) <br />
+          Wynik: {r.score}/{r.total} | {r.percent}% <br />
           Data: {r.date}
 
         </div>

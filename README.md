@@ -12,3 +12,5 @@ quizlist + localstorage for pushing quizzes
 quizcreator attempt
 # --- v. 0.07 ---
 results + storage, layout fix needed
+# --- v. 0.08 ---
+minor fixes with the Results and QuizPlayer
