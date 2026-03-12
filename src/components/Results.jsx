@@ -16,7 +16,7 @@ function Results() {
 
       {results.map(r => (
         <div
-          key={r.id} className="border p-3 rounded mb-2">
+          key={r.id} className="border p-3 rounded-xl border-2 mb-2 hover:border-sky-500 hover:scale-105 tranform duration-200">
 
           Quiz: {r.quizId} <br />
           Wynik: {r.score}/{r.total} | {r.percent}% <br />

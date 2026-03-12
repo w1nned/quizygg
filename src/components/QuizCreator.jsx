@@ -103,7 +103,7 @@ function QuizCreator() {
             }}/>
 
           <input
-            className="relative top-3 form-radio custom-radio text-green-600"
+            className="relative top-3 form-radio custom-radio text-green-600 tranform duration-300"
             type="radio"
             name="correct"
             checked={correct === i}
@@ -131,11 +131,11 @@ function QuizCreator() {
         </div>
       )}
 
-      <button onClick={addQuestion} className="bg-blue-500 text-blue-300 px-4 py-2 rounded hover:scale-110 hover:font-bold hover:text-white">Dodaj pytanie</button>
+      <button onClick={addQuestion} className="bg-blue-500 text-blue-300 px-4 py-2 rounded hover:scale-110 hover:font-bold hover:text-white tranform duration-100">Dodaj pytanie</button>
 
       <p className="mt-3">Liczba pytań: {questions.length}</p>
 
-      <button onClick={saveQuiz} className="bg-green-600 text-green-300 px-4 py-2 rounded mt-4 hover:scale-110 hover:font-bold hover:text-white">Zapisz quiz</button>
+      <button onClick={saveQuiz} className="bg-green-600 text-green-300 px-4 py-2 rounded mt-4 hover:scale-110 hover:font-bold hover:text-white tranform duration-100">Zapisz quiz</button>
     </div>
   );
 }
