@@ -61,24 +61,28 @@ function QuizCreator() {
   return (
     <div>
 
-      <h1>Kreator quizu</h1>
+      <h1 className="text-2xl font-bold mb-4">Kreator quizu</h1>
 
       <input
+        className="border p-2 w-full mb-2"
         placeholder="Nazwa quizu"
         onChange={(e) => setTitle(e.target.value)}/>
 
       <input
+        className="border p-2 w-full mb-4"
         placeholder="Opis"
         onChange={(e) => setDescription(e.target.value)}/>
 
-      <h2>Dodaj pytanie</h2>
+      <h2 className="font-semibold mb-2">Dodaj pytanie</h2>
 
       <input
+        className="border p-2 w-full mb-2"
         placeholder="Treść pytania"
         value={text}
         onChange={(e) => setText(e.target.value)}/>
 
       <select
+        className="border p-2 mb-3"
         value={type}
         onChange={(e) => setType(e.target.value)}>
         <option value="single">Jednokrotny wybór</option>
@@ -86,9 +90,10 @@ function QuizCreator() {
       </select>
 
       {type === "single" && options.map((opt, i) => (
-        <div key={i}>
+        <div key={i} className="flex gap-2 mb-2">
 
           <input
+            className="border p-2 w-full"
             placeholder={`Odpowiedź ${i + 1}`}
             value={opt}
             onChange={(e) => {
@@ -107,9 +112,9 @@ function QuizCreator() {
       ))}
 
       {type === "boolean" && (
-        <div>
+        <div className="mb-3">
 
-          <label>
+          <label className="mr-4">
             <input
               type="radio"
               checked={correct === 0}
@@ -123,11 +128,11 @@ function QuizCreator() {
         </div>
       )}
 
-      <button onClick={addQuestion}>Dodaj pytanie</button>
+      <button onClick={addQuestion} className="bg-blue-500 text-blue-300 px-4 py-2 rounded hover:scale-110 hover:font-bold hover:text-white">Dodaj pytanie</button>
 
-      <p>Liczba pytań: {questions.length}</p>
+      <p className="mt-3">Liczba pytań: {questions.length}</p>
 
-      <button onClick={saveQuiz}>Zapisz quiz</button>
+      <button onClick={saveQuiz} className="bg-green-600 text-green-300 px-4 py-2 rounded mt-4 hover:scale-110 hover:font-bold hover:text-white">Zapisz quiz</button>
     </div>
   );
 }

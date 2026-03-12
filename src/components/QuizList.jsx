@@ -23,11 +23,11 @@ function QuizList() {
       <h1 className="text-3xl font-bold mb-4 flex justify-center">Quizy</h1>
 
       <div className="mb-6 flex gap-3">
-        <Link to="/create" className="bg-blue-500 text-white px-4 py-2 rounded">
+        <Link to="/create" className="bg-blue-500 text-blue-300 px-4 py-2 rounded font-bold hover:scale-110 hover:text-white">
           Nowy quiz
         </Link>
 
-        <Link to="/results" className="bg-gray-600 text-gray-300 px-4 py-2 rounded">
+        <Link to="/results" className="bg-gray-600 text-gray-300 px-4 py-2 rounded hover:font-bold hover:scale-110 hover:text-white">
           Wyniki
         </Link>
       </div>
