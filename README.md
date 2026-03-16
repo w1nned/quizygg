@@ -18,3 +18,5 @@ minor fixes with the Results and QuizPlayer
 attempts on tailwind css within all components + index.css rework
 # --- v. 0.10 ---
 tailwind merge attempt
+# --- v. 0.11 ---
+test css + results

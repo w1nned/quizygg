@@ -61,7 +61,7 @@ function QuizPlayer() {
         <h1 className="text-2xl font-bold mb-4" style={styles.title}>Wynik quizu</h1>
         <p style={styles.text}>Wynik: {result.score}/{questions.length}</p>
         <p style={styles.text}>Procent: {result.percent}%</p>
-        <button style={styles.button} onClick={() => navigate("/")}>
+        <button className="mt-5 bg-sky-500 text-white px-4 py-2 rounded font-bold hover:scale-110 transform duration-100" style={styles.button} onClick={() => navigate("/")}>
           Powrót do listy quizów
         </button>
       </div>
