@@ -16,3 +16,5 @@ results + storage, layout fix needed
 minor fixes with the Results and QuizPlayer
 # --- v. 0.09 ---
 attempts on tailwind css within all components + index.css rework
+# --- v. 0.10 ---
+tailwind merge attempt
