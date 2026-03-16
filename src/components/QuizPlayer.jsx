@@ -22,22 +22,25 @@ function QuizPlayer() {
   const colors = ["#FF4C4C", "#4C6EFF", "#4CFF88", "#9D4CFF"];
 
   const selectAnswer = (index) => {
-    setAnswers(prev => ({ ...prev, [q.id]: index }));
+    const newAnswers = { ...answers, [q.id]: index };
+    setAnswers(newAnswers);
 
     setTimeout(() => {
       if (currentQuestion < questions.length - 1) {
         setCurrentQuestion(currentQuestion + 1);
       } else {
-        finishQuiz();
+        finishQuiz(newAnswers);
       }
     }, 300);
   };
 
-  const finishQuiz = () => {
+  const finishQuiz = (finalAnswers) => {
     let score = 0;
+
     questions.forEach(q => {
-      if (answers[q.id] === q.correct) score++;
+      if (finalAnswers[q.id] === q.correct) score++;
     });
+
     const percent = Math.round((score / questions.length) * 100);
 
     const results = getResults();
@@ -49,6 +52,7 @@ function QuizPlayer() {
       total: questions.length,
       percent
     });
+
     saveResults(results);
 
     setResult({ score, percent });
