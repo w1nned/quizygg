@@ -38,6 +38,10 @@ function QuizCreator() {
 
   };
 
+  const goBack = () => {
+    navigate("../");
+  };
+
   const saveQuiz = () => {
 
     if (questions.length === 0) {
@@ -60,8 +64,14 @@ function QuizCreator() {
 
   return (
     <div>
-
-      <h1 className="text-2xl font-bold mb-4">Kreator quizu</h1>
+      <div className="mx-auto w-fit items-center mb-6 mt-6 flex gap-47">
+        <h1 className="mx-auto flex text-2xl font-bold mb-4">Kreator quizu</h1>
+        <button
+          className="justify-center bg-sky-500 text-sky-300 px-4 py-2 rounded font-bold hover:scale-110 hover:text-white transform duration-100"
+          onClick={goBack}>
+          Powrót do listy quizów
+        </button>
+      </div>
 
       <input
         className="border p-2 rounded-lg w-full mb-2 hover:border-green-500 hover:border-2"
