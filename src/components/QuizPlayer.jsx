@@ -58,7 +58,7 @@ function QuizPlayer() {
   if (finished) {
     return (
       <div style={styles.container}>
-        <h1 style={styles.title}>Wynik quizu</h1>
+        <h1 className="text-2xl font-bold mb-4" style={styles.title}>Wynik quizu</h1>
         <p style={styles.text}>Wynik: {result.score}/{questions.length}</p>
         <p style={styles.text}>Procent: {result.percent}%</p>
         <button style={styles.button} onClick={() => navigate("/")}>
@@ -70,14 +70,15 @@ function QuizPlayer() {
 
   return (
     <div style={styles.container}>
-      <h3 style={styles.quizTitle}>{quiz.title}</h3>
-      <h1 style={styles.question}>{q.question}</h1>
+      <h3 className="text-lg font-semi-bold" style={styles.quizTitle}>{quiz.title}</h3>
+      <h1 className="text-2xl font-bold mb-4" style={styles.question}>{q.question}</h1>
 
       <div style={styles.options}>
         {q.options.slice(0, 4).map((opt, i) => {
           const isSelected = answers[q.id] === i;
           return (
             <div
+              className="text-4xl font-bold hover:scale-105 transform duration-100 active:opacity-25"
               key={i}
               onClick={() => selectAnswer(i)}
               style={{
@@ -111,6 +112,8 @@ const styles = {
   marginBottom: "30px"
   },
   container:{
+    position: "absolute",
+    left: "175px",
     width: "85vw",
     textAlign:"center"
   },
