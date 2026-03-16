@@ -7,6 +7,7 @@ import Results from "./components/Results";
 function App() {
   return (
     <BrowserRouter>
+    <div className="h-239 w-full bg-center bg-cover bg-[url(assets/bgs1.webp)]">
       <div className="p-6 max-w-3xl mx-auto">
 
         <Routes>
@@ -17,6 +18,7 @@ function App() {
         </Routes>
 
       </div>
+    </div>
     </BrowserRouter>
   );
 }

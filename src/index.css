@@ -7,7 +7,6 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -19,9 +18,26 @@ h1 {
   line-height: 1.1;
 }
 
+.custom-radio {
+    @apply h-4 w-4 appearance-none rounded-full border-2
+    border-green-300;
+}
+
+.custom-radio:checked {
+  @apply border-transparent bg-current;
+}
+
+.custom-radio:checked::before {
+  content: "";
+  @apply mx-auto block rounded-full bg-white;
+}
+
+.custom-radio:focus {
+  @apply outline-none ring-2 ring-green-400 ring-offset-2;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
   }
 }

@@ -64,25 +64,25 @@ function QuizCreator() {
       <h1 className="text-2xl font-bold mb-4">Kreator quizu</h1>
 
       <input
-        className="border p-2 w-full mb-2"
+        className="border p-2 rounded-lg w-full mb-2 hover:border-green-500 hover:border-2"
         placeholder="Nazwa quizu"
         onChange={(e) => setTitle(e.target.value)}/>
 
       <input
-        className="border p-2 w-full mb-4"
+        className="border p-2 rounded-lg w-full mb-4 hover:border-green-500 hover:border-2"
         placeholder="Opis"
         onChange={(e) => setDescription(e.target.value)}/>
 
       <h2 className="font-semibold mb-2">Dodaj pytanie</h2>
 
       <input
-        className="border p-2 w-full mb-2"
+        className="border p-2 rounded-lg w-full mb-2 hover:border-green-500 hover:border-2"
         placeholder="Treść pytania"
         value={text}
         onChange={(e) => setText(e.target.value)}/>
 
       <select
-        className="border p-2 mb-3"
+        className="border rounded-sm p-2 mb-3 hover:border-green-500 hover:border-2"
         value={type}
         onChange={(e) => setType(e.target.value)}>
         <option value="single">Jednokrotny wybór</option>
@@ -93,7 +93,7 @@ function QuizCreator() {
         <div key={i} className="flex gap-2 mb-2">
 
           <input
-            className="border p-2 w-full"
+            className="border rounded-lg p-2 w-full hover:border-green-500 hover:border-2"
             placeholder={`Odpowiedź ${i + 1}`}
             value={opt}
             onChange={(e) => {
@@ -103,6 +103,7 @@ function QuizCreator() {
             }}/>
 
           <input
+            className="relative top-3 form-radio custom-radio text-green-600 tranform duration-300"
             type="radio"
             name="correct"
             checked={correct === i}
@@ -116,23 +117,25 @@ function QuizCreator() {
 
           <label className="mr-4">
             <input
+              className="relative top-0.5 form-radio custom-radio text-green-600"
               type="radio"
               checked={correct === 0}
-              onChange={() => setCorrect(0)}/>Prawda</label>
+              onChange={() => setCorrect(0)}/> Prawda</label>
 
           <label>
             <input
+              className="relative top-0.5 form-radio custom-radio text-green-600"
               type="radio"
               checked={correct === 1}
-              onChange={() => setCorrect(1)}/>Fałsz</label>
+              onChange={() => setCorrect(1)}/> Fałsz</label>
         </div>
       )}
 
-      <button onClick={addQuestion} className="bg-blue-500 text-blue-300 px-4 py-2 rounded hover:scale-110 hover:font-bold hover:text-white">Dodaj pytanie</button>
+      <button onClick={addQuestion} className="bg-blue-500 text-blue-300 px-4 py-2 rounded hover:scale-110 hover:font-bold hover:text-white tranform duration-100">Dodaj pytanie</button>
 
       <p className="mt-3">Liczba pytań: {questions.length}</p>
 
-      <button onClick={saveQuiz} className="bg-green-600 text-green-300 px-4 py-2 rounded mt-4 hover:scale-110 hover:font-bold hover:text-white">Zapisz quiz</button>
+      <button onClick={saveQuiz} className="bg-green-600 text-green-300 px-4 py-2 rounded mt-4 hover:scale-110 hover:font-bold hover:text-white tranform duration-100">Zapisz quiz</button>
     </div>
   );
 }
