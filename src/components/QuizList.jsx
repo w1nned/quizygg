@@ -48,7 +48,7 @@ function QuizList() {
               </Link>
 
               <button
-                onClick={() => deleteQuiz(q.id)} className="bg-red-500 text-red-900 px-3 py-1 rounded font-bold hover:scale-110 hover:text-gray-900 tranform duration-100">
+                onClick={() => deleteQuiz(q.id)} className="bg-red-500 cursor-pointer text-red-900 px-3 py-1 rounded font-bold hover:scale-110 hover:text-gray-900 tranform duration-100">
                 Usuń
               </button>
 

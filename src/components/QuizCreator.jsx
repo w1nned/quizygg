@@ -67,7 +67,7 @@ function QuizCreator() {
       <div className="mx-auto w-fit items-center mb-6 mt-6 flex gap-47">
         <h1 className="mx-auto flex text-2xl font-bold mb-4">Kreator quizu</h1>
         <button
-          className="justify-center bg-sky-500 text-sky-300 px-4 py-2 rounded font-bold hover:scale-110 hover:text-white transform duration-100"
+          className="justify-center cursor-pointer bg-sky-500 text-sky-300 px-4 py-2 rounded font-bold hover:scale-110 hover:text-white transform duration-100"
           onClick={goBack}>
           Powrót do listy quizów
         </button>
@@ -141,11 +141,11 @@ function QuizCreator() {
         </div>
       )}
 
-      <button onClick={addQuestion} className="bg-blue-500 text-blue-300 px-4 py-2 rounded hover:scale-110 hover:font-bold hover:text-white tranform duration-100">Dodaj pytanie</button>
+      <button onClick={addQuestion} className="bg-blue-500 cursor-pointer text-blue-300 px-4 py-2 rounded hover:scale-110 hover:font-bold hover:text-white tranform duration-100">Dodaj pytanie</button>
 
       <p className="mt-3">Liczba pytań: {questions.length}</p>
 
-      <button onClick={saveQuiz} className="bg-green-600 text-green-300 px-4 py-2 rounded mt-4 hover:scale-110 hover:font-bold hover:text-white tranform duration-100">Zapisz quiz</button>
+      <button onClick={saveQuiz} className="bg-green-600 text-green-300 cursor-pointer px-4 py-2 rounded mt-4 hover:scale-110 hover:font-bold hover:text-white tranform duration-100">Zapisz quiz</button>
     </div>
   );
 }

@@ -65,13 +65,13 @@ function Results() {
 
       <div className="mx-auto w-fit items-center mb-6 flex gap-3">
         <button
-          className="bg-sky-500 text-sky-300 px-4 py-2 rounded font-bold hover:scale-110 hover:text-white transform duration-100"
+          className="bg-sky-500 cursor-pointer text-sky-300 px-4 py-2 rounded font-bold hover:scale-110 hover:text-white transform duration-100"
           onClick={goBack}>
           Powrót do listy quizów
         </button>
 
         <button
-          className="bg-green-600 text-green-300 px-4 py-2 rounded hover:font-bold hover:scale-110 hover:text-white transform duration-100"
+          className="bg-green-600 cursor-pointer text-green-300 px-4 py-2 rounded hover:font-bold hover:scale-110 hover:text-white transform duration-100"
           onClick={exportToCSV}>
           Export do CSV
         </button>
@@ -91,7 +91,7 @@ function Results() {
 
           <button
             onClick={() => deleteResult(r.id)}
-            className="text-xs bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 hover:scale-110 transform duration-100">
+            className="text-xs cursor-pointer bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 hover:scale-110 transform duration-100">
             ✕
           </button>
 
