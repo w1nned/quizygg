@@ -25,13 +25,14 @@ function Results() {
 
   const exportToCSV = () => {
 
-    const headers = ["Quiz ID", "Score", "Total", "Percent", "Date"];
+    const headers = ["Quiz ID", "Score", "Total", "Percent","Time", "Date"];
 
     const rows = results.map(r => [
       r.quizId,
       r.score,
       r.total,
       r.percent,
+      r.time,
       r.date
     ]);
 
@@ -83,7 +84,9 @@ function Results() {
           <div>
             Quiz: {r.quizId} <br />
             Wynik: {r.score}/{r.total} | {r.percent}% <br />
+            Czas: {r.time}<br/>
             Data: {r.date}
+
           </div>
 
           <button
