@@ -1,4 +1,22 @@
-# quizyGG
+# ### QuizyGG ###
+QuizyGG to aplikacja webowa umożliwiająca tworzenie oraz rozwiązywanie quizów. Użytkownik może tworzyć własne zestawy pytań, a następnie rozwiązywać je i otrzymywać wynik w postaci punktów/procentów.
+
+# === FUNKCJONALNOŚCI ===
+A: tworzenie quizów
+B: dodawanie różnego rodzaju pytań (prawda/fałsz, ABCD...)
+C: rozwiązywanie quizów
+D: obliczanie wyników
+
+# === TECHNOLOGIE ===
+ReactJS + Vite; React Router; Tailwind CSS; localStorage
+
+# === ROZSZERZENIA ===
+A: historia wyników i eksport do CSV
+B: timer (czasomierz)
+C: losowanie pytań (z każdym podejściem kolejność jest losowa)
+D: statystyki (jaki czas, ile procent...)
+
+# --- CHANGELOG ---
 reactjs quiz app
 # --- v. 0.01 ---
 project created; vite + reactjs
