@@ -22,23 +22,36 @@ function QuizCreator() {
   const [history, setHistory] = useState([]);
   const [step, setStep] = useState(-1);
 
-  const addQuestion = () => {
+const addQuestion = () => {
+  if (!text) return;
 
-    if (!text) return;
+  const q = {
+    id: Date.now(),
+    type,
+    question: text,
+    options: type === "single" ? options : ["Prawda", "Fałsz"],
+    correct
+  };
 
-    const q = {
-      id: Date.now(),
-      type,
-      question: text,
-      options: type === "single" ? options : ["Prawda", "Fałsz"],
-      correct
-    };
-
-    setQuestions([...questions, q]);
+    const newQuestions = [...questions, q];
+    setQuestions(newQuestions);
 
     setText("");
     setOptions(["", "", "", ""]);
 
+    const newState = {
+      text: "",
+      options: ["", "", "", ""],
+      correct,
+      type,
+      questions: newQuestions
+    };
+
+    const updatedHistory = history.slice(0, step + 1);
+    updatedHistory.push(newState);
+
+    setHistory(updatedHistory);
+    setStep(updatedHistory.length - 1);
   };
 
   const goBack = () => {
@@ -66,31 +79,33 @@ function QuizCreator() {
   };
 
   const saveStateToHistory = () => {
-  const newState = {
-    text,
-    options,
-    correct,
-    type
-  };
+    const newState = {
+      text,
+      options,
+      correct,
+      type,
+      questions
+    };
 
-  const updatedHistory = history.slice(0, step + 1);
-  updatedHistory.push(newState);
+    const updatedHistory = history.slice(0, step + 1);
+    updatedHistory.push(newState);
 
-  setHistory(updatedHistory);
-  setStep(updatedHistory.length - 1);
+    setHistory(updatedHistory);
+    setStep(updatedHistory.length - 1);
   };
 
   const undo = () => {
-  if (step <= 0) return;
+    if (step <= 0) return;
 
-  const prev = history[step - 1];
+    const prev = history[step - 1];
 
-  setText(prev.text);
-  setOptions(prev.options);
-  setCorrect(prev.correct);
-  setType(prev.type);
+    setText(prev.text);
+    setOptions(prev.options);
+    setCorrect(prev.correct);
+    setType(prev.type);
+    setQuestions(prev.questions);
 
-  setStep(step - 1);
+    setStep(step - 1);
   };
 
   useEffect(() => {
@@ -187,12 +202,7 @@ function QuizCreator() {
       )}
 
       <button onClick={addQuestion} className="bg-blue-500 cursor-pointer text-blue-300 px-4 py-2 rounded hover:scale-110 hover:font-bold hover:text-white tranform duration-100">Dodaj pytanie</button>
-      <button
-        onClick={undo}
-        className="bg-gray-500 cursor-pointer text-white px-4 py-2 rounded ml-2 hover:scale-110"
-      >
-        Cofnij
-      </button>
+      <button onClick={undo} className="bg-gray-500 cursor-pointer text-white px-4 py-2 rounded ml-2 hover:scale-110 hover:font-bold transform duration-100">Cofnij</button>
 
       <p className="mt-3">Liczba pytań: {questions.length}</p>
 
