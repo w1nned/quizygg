@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getQuizzes, saveQuizzes } from "../services/storage";
 import { useNavigate } from "react-router-dom";
 
@@ -18,6 +18,9 @@ function QuizCreator() {
   const [options, setOptions] = useState(["", "", "", ""]);
 
   const [correct, setCorrect] = useState(0);
+
+  const [history, setHistory] = useState([]);
+  const [step, setStep] = useState(-1);
 
   const addQuestion = () => {
 
@@ -62,6 +65,38 @@ function QuizCreator() {
     navigate("/");
   };
 
+  const saveStateToHistory = () => {
+  const newState = {
+    text,
+    options,
+    correct,
+    type
+  };
+
+  const updatedHistory = history.slice(0, step + 1);
+  updatedHistory.push(newState);
+
+  setHistory(updatedHistory);
+  setStep(updatedHistory.length - 1);
+  };
+
+  const undo = () => {
+  if (step <= 0) return;
+
+  const prev = history[step - 1];
+
+  setText(prev.text);
+  setOptions(prev.options);
+  setCorrect(prev.correct);
+  setType(prev.type);
+
+  setStep(step - 1);
+  };
+
+  useEffect(() => {
+  saveStateToHistory();
+  }, []);
+
   return (
     <div>
       <div className="mx-auto w-fit items-center mb-6 mt-6 flex gap-47">
@@ -89,12 +124,18 @@ function QuizCreator() {
         className="border p-2 rounded-lg w-full mb-2 hover:border-green-500 hover:border-2"
         placeholder="Treść pytania"
         value={text}
-        onChange={(e) => setText(e.target.value)}/>
+        onChange={(e) => {
+        setText(e.target.value);
+        saveStateToHistory();
+      }}/>
 
       <select
         className="border rounded-sm p-2 mb-3 hover:border-green-500 hover:border-2"
         value={type}
-        onChange={(e) => setType(e.target.value)}>
+        onChange={(e) => {
+        setType(e.target.value);
+        saveStateToHistory();
+      }}>
         <option value="single">Jednokrotny wybór</option>
         <option value="boolean">Prawda / Fałsz</option>
       </select>
@@ -107,17 +148,21 @@ function QuizCreator() {
             placeholder={`Odpowiedź ${i + 1}`}
             value={opt}
             onChange={(e) => {
-              const copy = [...options];
-              copy[i] = e.target.value;
-              setOptions(copy);
-            }}/>
+            const copy = [...options];
+            copy[i] = e.target.value;
+            setOptions(copy);
+            saveStateToHistory();
+          }}/>
 
           <input
             className="relative top-3 form-radio custom-radio text-green-600 tranform duration-300"
             type="radio"
             name="correct"
             checked={correct === i}
-            onChange={() => setCorrect(i)}/>
+            onChange={() => {
+            setCorrect(i);
+            saveStateToHistory();
+          }}/>
 
         </div>
       ))}
@@ -142,6 +187,12 @@ function QuizCreator() {
       )}
 
       <button onClick={addQuestion} className="bg-blue-500 cursor-pointer text-blue-300 px-4 py-2 rounded hover:scale-110 hover:font-bold hover:text-white tranform duration-100">Dodaj pytanie</button>
+      <button
+        onClick={undo}
+        className="bg-gray-500 cursor-pointer text-white px-4 py-2 rounded ml-2 hover:scale-110"
+      >
+        Cofnij
+      </button>
 
       <p className="mt-3">Liczba pytań: {questions.length}</p>
 

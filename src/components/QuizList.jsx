@@ -34,7 +34,7 @@ function QuizList() {
 
         {quizzes.map(q => (
           <div
-            key={q.id} className="border p-4 rounded-xl border-2 mb-3 shadow hover:border-sky-500 hover:scale-105 tranform duration-300">
+            key={q.id} className="w-full h-full border p-4 rounded-xl border-2 mb-3 shadow hover:border-sky-500 hover:scale-105 tranform duration-300">
 
             <h3 className="text-xl font-semibold">{q.title}</h3>
 
