@@ -1,5 +1,6 @@
-# ### QuizyGG ###
-QuizyGG to aplikacja webowa umożliwiająca tworzenie oraz rozwiązywanie quizów. Użytkownik może tworzyć własne zestawy pytań, a następnie rozwiązywać je i otrzymywać wynik w postaci punktów/procentów.
+# ======= QuizyGG =======
+QuizyGG to prosta aplikacja webowa umożliwiająca tworzenie oraz rozwiązywanie quizów. Użytkownik może tworzyć własne zestawy pytań, a następnie rozwiązywać je i otrzymywać wynik w postaci punktów/procentów.
+Stworzona pod szkolny projekt zawodowy z ReactJS.
 
 # === FUNKCJONALNOŚCI ===
 A: tworzenie quizów<br/>
@@ -46,3 +47,5 @@ readme created, additional functionality for quiz creator
 various fixes for quiz creator
 # --- v. 0.22 ---
 list/grid view test + validation accountability
+# --- v. 0.23 ---
+readme update
