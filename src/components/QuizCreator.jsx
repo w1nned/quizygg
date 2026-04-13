@@ -107,17 +107,38 @@ const addQuestion = () => {
   };
 
   const prevQuestion = () => {
-  if (currentIndex === null || currentIndex === 0) return;
+  console.log(currentIndex);
+  console.log(text);
 
-  const prev = questions[currentIndex - 1];
+  if (questions.length === 0) return;
+
+
+  if (currentIndex === null) {
+    const lastIndex = questions.length - 1;
+    const prev = questions[lastIndex];
+    if (!prev) return;
+
+    setText(prev.question);
+    setOptions(prev.options);
+    setCorrect(prev.correct);
+    setType(prev.type);
+    setCurrentIndex(lastIndex);
+    return;
+  }
+
+
+  if (currentIndex <= 0) return;
+
+  const newIndex = currentIndex - 1;
+  const prev = questions[newIndex];
+  if (!prev) return;
 
   setText(prev.question);
   setOptions(prev.options);
   setCorrect(prev.correct);
   setType(prev.type);
-
-  setCurrentIndex(currentIndex - 1);
-  };
+  setCurrentIndex(newIndex);
+};
 
   const nextQuestion = () => {
   if (currentIndex === null || currentIndex >= questions.length - 1) return;
