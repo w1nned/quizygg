@@ -38,3 +38,11 @@ attempts on tailwind css within all components + index.css rework
 tailwind merge attempt
 # --- v. 0.11 ---
 test css + results
+# --- v. 0.12 ---
+various fixes
+# --- v. 0.2 ---
+readme created, additional functionality for quiz creator
+# --- v. 0.21 ---
+various fixes for quiz creator
+# --- v. 0.22 ---
+list/grid view test + validation accountability
