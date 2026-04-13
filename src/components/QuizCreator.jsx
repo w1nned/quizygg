@@ -22,6 +22,8 @@ function QuizCreator() {
   const [history, setHistory] = useState([]);
   const [step, setStep] = useState(-1);
 
+  const [currentIndex, setCurrentIndex] = useState(null);
+
 const addQuestion = () => {
   if (!text) return;
 
@@ -54,8 +56,80 @@ const addQuestion = () => {
     setStep(updatedHistory.length - 1);
   };
 
+  const saveQuestion = () => {
+  if (!text) return;
+
+  const q = {
+    id: currentIndex !== null ? questions[currentIndex].id : Date.now(),
+    type,
+    question: text,
+    options: type === "single" ? options : ["Prawda", "Fałsz"],
+    correct
+  };
+
+  let updated;
+
+  if (currentIndex !== null) {
+
+    updated = [...questions];
+    updated[currentIndex] = q;
+  } else {
+
+    updated = [...questions, q];
+    setCurrentIndex(updated.length - 1);
+  }
+
+  setQuestions(updated);
+  };
+
   const goBack = () => {
     navigate("../");
+  };
+
+  const saveAndAddNew = () => {
+  saveQuestion();
+
+  setText("");
+  setOptions(["", "", "", ""]);
+  setCorrect(0);
+  setType("single");
+
+  setCurrentIndex(null);
+  };
+
+  const addNewQuestion = () => {
+  setText("");
+  setOptions(["", "", "", ""]);
+  setCorrect(0);
+  setType("single");
+
+  setCurrentIndex(null);
+  };
+
+  const prevQuestion = () => {
+  if (currentIndex === null || currentIndex === 0) return;
+
+  const prev = questions[currentIndex - 1];
+
+  setText(prev.question);
+  setOptions(prev.options);
+  setCorrect(prev.correct);
+  setType(prev.type);
+
+  setCurrentIndex(currentIndex - 1);
+  };
+
+  const nextQuestion = () => {
+  if (currentIndex === null || currentIndex >= questions.length - 1) return;
+
+  const next = questions[currentIndex + 1];
+
+  setText(next.question);
+  setOptions(next.options);
+  setCorrect(next.correct);
+  setType(next.type);
+
+  setCurrentIndex(currentIndex + 1);
   };
 
   const saveQuiz = () => {
@@ -201,10 +275,35 @@ const addQuestion = () => {
         </div>
       )}
 
-      <button onClick={addQuestion} className="bg-blue-500 cursor-pointer text-blue-300 px-4 py-2 rounded hover:scale-110 hover:font-bold hover:text-white tranform duration-100">Dodaj pytanie</button>
-      <button onClick={undo} className="bg-gray-500 cursor-pointer text-white px-4 py-2 rounded ml-2 hover:scale-110 hover:font-bold transform duration-100">Cofnij</button>
+      {/*<button onClick={addQuestion} className="bg-blue-500 cursor-pointer text-blue-300 px-5 py-2 rounded hover:scale-110 hover:font-bold hover:text-white transform duration-100">Dodaj pytanie</button>*/}
+      <div className="flex gap-2 mt-4 flex-wrap">
+
+        <button onClick={prevQuestion} className="bg-gray-500 ml-3 mr-3 cursor-pointer text-gray-300 px-4 py-2 rounded hover:scale-110 hover:font-bold hover:text-white transform duration-100">
+          ⬅
+        </button>
+
+        <button onClick={saveQuestion} className="bg-purple-500 mr-3 cursor-pointer text-purple-300 px-5 py-2 rounded hover:scale-110 hover:font-bold hover:text-white transform duration-100">
+          💾 Zapisz pytanie
+        </button>
+
+        {/*<button onClick={saveAndAddNew} className="bg-green-500 mr-3 cursor-pointer text-green-300 px-5 py-2 rounded hover:scale-110 hover:font-bold hover:text-white transform duration-100">
+          ✅ Zapisz i dodaj
+        </button>*/}
+
+        <button onClick={saveAndAddNew} className="bg-blue-500 mr-3 cursor-pointer text-blue-300 px-5 py-2 rounded hover:scale-110 hover:font-bold hover:text-white transform duration-100">
+          ➕ Nowe pytanie
+        </button>
+
+        <button onClick={nextQuestion} className="bg-gray-500 mr-2 cursor-pointer text-gray-300 px-5 py-2 rounded hover:scale-110 hover:font-bold hover:text-white transform duration-100">
+          ➡
+        </button>
+
+    </div>
 
       <p className="mt-3">Liczba pytań: {questions.length}</p>
+      <p className="mt-1">
+        Aktualne pytanie: {currentIndex !== null ? currentIndex + 1 : (questions.length + 1) } / {questions.length}{currentIndex !== null ? "" : " (szkic)" }
+      </p>
 
       <button onClick={saveQuiz} className="bg-green-600 text-green-300 cursor-pointer px-4 py-2 rounded mt-4 hover:scale-110 hover:font-bold hover:text-white tranform duration-100">Zapisz quiz</button>
     </div>
