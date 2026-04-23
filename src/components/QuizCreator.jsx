@@ -24,16 +24,16 @@ function QuizCreator() {
 
   const [currentIndex, setCurrentIndex] = useState(null);
 
-const addQuestion = () => {
-  if (!text) return;
+  const addQuestion = () => {
+    if (!text) return;
 
-  const q = {
-    id: Date.now(),
-    type,
-    question: text,
-    options: type === "single" ? options : ["Prawda", "Fałsz"],
-    correct
-  };
+    const q = {
+      id: Date.now(),
+      type,
+      question: text,
+      options: type === "single" ? options : ["Prawda", "Fałsz"],
+      correct
+    };
 
     const newQuestions = [...questions, q];
     setQuestions(newQuestions);
@@ -57,29 +57,29 @@ const addQuestion = () => {
   };
 
   const saveQuestion = () => {
-  if (!text) return;
+    if (!text) return;
 
-  const q = {
-    id: currentIndex !== null ? questions[currentIndex].id : Date.now(),
-    type,
-    question: text,
-    options: type === "single" ? options : ["Prawda", "Fałsz"],
-    correct
-  };
+    const q = {
+      id: currentIndex !== null ? questions[currentIndex].id : Date.now(),
+      type,
+      question: text,
+      options: type === "single" ? options : ["Prawda", "Fałsz"],
+      correct
+    };
 
-  let updated;
+    let updated;
 
-  if (currentIndex !== null) {
+    if (currentIndex !== null) {
 
-    updated = [...questions];
-    updated[currentIndex] = q;
-  } else {
+      updated = [...questions];
+      updated[currentIndex] = q;
+    } else {
 
-    updated = [...questions, q];
-    setCurrentIndex(updated.length - 1);
-  }
+      updated = [...questions, q];
+      setCurrentIndex(updated.length - 1);
+    }
 
-  setQuestions(updated);
+    setQuestions(updated);
   };
 
   const goBack = () => {
@@ -87,90 +87,94 @@ const addQuestion = () => {
   };
 
   const saveAndAddNew = () => {
-  saveQuestion();
+    saveQuestion();
 
-  setText("");
-  setOptions(["", "", "", ""]);
-  setCorrect(0);
-  setType("single");
+    setText("");
+    setOptions(["", "", "", ""]);
+    setCorrect(0);
+    setType("single");
 
-  setCurrentIndex(null);
+    setCurrentIndex(null);
   };
 
   const addNewQuestion = () => {
-  setText("");
-  setOptions(["", "", "", ""]);
-  setCorrect(0);
-  setType("single");
+    setText("");
+    setOptions(["", "", "", ""]);
+    setCorrect(0);
+    setType("single");
 
-  setCurrentIndex(null);
+    setCurrentIndex(null);
   };
 
   const prevQuestion = () => {
-  console.log(currentIndex);
-  console.log(text);
+    console.log(currentIndex);
+    console.log(text);
 
-  if (questions.length === 0) return;
+    if (questions.length === 0) return;
 
 
-  if (currentIndex === null) {
-    const lastIndex = questions.length - 1;
-    const prev = questions[lastIndex];
+    if (currentIndex === null) {
+      const lastIndex = questions.length - 1;
+      const prev = questions[lastIndex];
+      if (!prev) return;
+
+      setText(prev.question);
+      setOptions(prev.options);
+      setCorrect(prev.correct);
+      setType(prev.type);
+      setCurrentIndex(lastIndex);
+      return;
+    }
+
+
+    if (currentIndex <= 0) return;
+
+    const newIndex = currentIndex - 1;
+    const prev = questions[newIndex];
     if (!prev) return;
 
     setText(prev.question);
     setOptions(prev.options);
     setCorrect(prev.correct);
     setType(prev.type);
-    setCurrentIndex(lastIndex);
-    return;
-  }
-
-
-  if (currentIndex <= 0) return;
-
-  const newIndex = currentIndex - 1;
-  const prev = questions[newIndex];
-  if (!prev) return;
-
-  setText(prev.question);
-  setOptions(prev.options);
-  setCorrect(prev.correct);
-  setType(prev.type);
-  setCurrentIndex(newIndex);
-};
+    setCurrentIndex(newIndex);
+  };
 
   const nextQuestion = () => {
-  if (currentIndex === null || currentIndex >= questions.length - 1) return;
+    if (currentIndex === null || currentIndex >= questions.length - 1) return;
 
-  const next = questions[currentIndex + 1];
+    const next = questions[currentIndex + 1];
 
-  setText(next.question);
-  setOptions(next.options);
-  setCorrect(next.correct);
-  setType(next.type);
+    setText(next.question);
+    setOptions(next.options);
+    setCorrect(next.correct);
+    setType(next.type);
 
-  setCurrentIndex(currentIndex + 1);
+    setCurrentIndex(currentIndex + 1);
   };
 
   const saveQuiz = () => {
+    saveQuestion()
 
-    if (questions.length === 0) {
-      alert("Dodaj przynajmniej jedno pytanie");
-      return;
-    }
+    setQuestions(questions => {
+      if (questions.length === 0 && !text) {
+        alert("Dodaj przynajmniej jedno pytanie");
+        return;
+      }
 
-    const quizzes = getQuizzes();
+      const quizzes = getQuizzes();
 
-    quizzes.push({
-      id: Date.now(),
-      title,
-      description,
-      questions
-    });
+      quizzes.push({
+        id: Date.now(),
+        title,
+        description,
+        questions
+      });
 
-    saveQuizzes(quizzes);
-    navigate("/");
+      saveQuizzes(quizzes);
+      navigate("/");
+      return questions;
+    })
   };
 
   const saveStateToHistory = () => {
@@ -204,7 +208,7 @@ const addQuestion = () => {
   };
 
   useEffect(() => {
-  saveStateToHistory();
+    saveStateToHistory();
   }, []);
 
   return (
@@ -221,12 +225,12 @@ const addQuestion = () => {
       <input
         className="border p-2 rounded-lg w-full mb-2 hover:border-green-500 hover:border-2"
         placeholder="Nazwa quizu"
-        onChange={(e) => setTitle(e.target.value)}/>
+        onChange={(e) => setTitle(e.target.value)} />
 
       <input
         className="border p-2 rounded-lg w-full mb-4 hover:border-green-500 hover:border-2"
         placeholder="Opis"
-        onChange={(e) => setDescription(e.target.value)}/>
+        onChange={(e) => setDescription(e.target.value)} />
 
       <h2 className="font-semibold mb-2">Dodaj pytanie</h2>
 
@@ -235,17 +239,17 @@ const addQuestion = () => {
         placeholder="Treść pytania"
         value={text}
         onChange={(e) => {
-        setText(e.target.value);
-        saveStateToHistory();
-      }}/>
+          setText(e.target.value);
+          saveStateToHistory();
+        }} />
 
       <select
         className="border rounded-sm p-2 mb-3 hover:border-green-500 hover:border-2"
         value={type}
         onChange={(e) => {
-        setType(e.target.value);
-        saveStateToHistory();
-      }}>
+          setType(e.target.value);
+          saveStateToHistory();
+        }}>
         <option value="single">Jednokrotny wybór</option>
         <option value="boolean">Prawda / Fałsz</option>
       </select>
@@ -258,11 +262,11 @@ const addQuestion = () => {
             placeholder={`Odpowiedź ${i + 1}`}
             value={opt}
             onChange={(e) => {
-            const copy = [...options];
-            copy[i] = e.target.value;
-            setOptions(copy);
-            saveStateToHistory();
-          }}/>
+              const copy = [...options];
+              copy[i] = e.target.value;
+              setOptions(copy);
+              saveStateToHistory();
+            }} />
 
           <input
             className="relative top-3 form-radio custom-radio text-green-600 tranform duration-300"
@@ -270,9 +274,9 @@ const addQuestion = () => {
             name="correct"
             checked={correct === i}
             onChange={() => {
-            setCorrect(i);
-            saveStateToHistory();
-          }}/>
+              setCorrect(i);
+              saveStateToHistory();
+            }} />
 
         </div>
       ))}
@@ -285,19 +289,19 @@ const addQuestion = () => {
               className="relative top-0.5 form-radio custom-radio text-green-600"
               type="radio"
               checked={correct === 0}
-              onChange={() => setCorrect(0)}/> Prawda</label>
+              onChange={() => setCorrect(0)} /> Prawda</label>
 
           <label>
             <input
               className="relative top-0.5 form-radio custom-radio text-green-600"
               type="radio"
               checked={correct === 1}
-              onChange={() => setCorrect(1)}/> Fałsz</label>
+              onChange={() => setCorrect(1)} /> Fałsz</label>
         </div>
       )}
 
       {/*<button onClick={addQuestion} className="bg-blue-500 cursor-pointer text-blue-300 px-5 py-2 rounded hover:scale-110 hover:font-bold hover:text-white transform duration-100">Dodaj pytanie</button>*/}
-      <div className="flex gap-2 mt-4 flex-wrap">
+      <div className="flex gap-2 mt-4 flex-wrap justify-between">
 
         <button onClick={prevQuestion} className="bg-gray-500 ml-3 mr-3 cursor-pointer text-gray-300 px-4 py-2 rounded hover:scale-110 hover:font-bold hover:text-white transform duration-100">
           ⬅
@@ -319,11 +323,11 @@ const addQuestion = () => {
           ➡
         </button>
 
-    </div>
+      </div>
 
       <p className="mt-3">Liczba pytań: {questions.length}</p>
       <p className="mt-1">
-        Aktualne pytanie: {currentIndex !== null ? currentIndex + 1 : (questions.length + 1) } / {questions.length}{currentIndex !== null ? "" : " (szkic)" }
+        Aktualne pytanie: {currentIndex !== null ? currentIndex + 1 : (questions.length + 1)} / {questions.length}{currentIndex !== null ? "" : " (szkic)"}
       </p>
 
       <button onClick={saveQuiz} className="bg-green-600 text-green-300 cursor-pointer px-4 py-2 rounded mt-4 hover:scale-110 hover:font-bold hover:text-white tranform duration-100">Zapisz quiz</button>
