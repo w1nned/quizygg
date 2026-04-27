@@ -154,28 +154,25 @@ function QuizCreator() {
   };
 
   const saveQuiz = () => {
-    saveQuestion()
+  saveQuestion();
 
-    setQuestions(questions => {
-      if (questions.length === 0 && !text) {
-        alert("Dodaj przynajmniej jedno pytanie");
-        return;
-      }
+  if (questions.length === 0 && !text) {
+    alert("Dodaj przynajmniej jedno pytanie");
+    return;
+  }
 
-      const quizzes = getQuizzes();
+  const quizzes = getQuizzes();
 
-      quizzes.push({
-        id: Date.now(),
-        title,
-        description,
-        questions
-      });
+  quizzes.push({
+    id: Date.now(),
+    title,
+    description,
+    questions
+  });
 
-      saveQuizzes(quizzes);
-      navigate("/");
-      return questions;
-    })
-  };
+  saveQuizzes(quizzes);
+  navigate("/");
+};
 
   const saveStateToHistory = () => {
     const newState = {

@@ -20,7 +20,7 @@ function QuizList() {
 
   return (
       <div className="mx-auto w-fit flex flex-col items-center">
-        <h1 className="text-3xl font-bold mb-4 flex justify-center">Quizy</h1>
+        <h1 className="text-3xl font-bold mb-4 flex justify-center">QuizyGG</h1>
 
         <div className="mb-6 flex gap-3">
           <Link to="/create" className="bg-blue-500 text-blue-300 px-4 py-2 rounded font-bold hover:scale-110 hover:text-white transform duration-100">
