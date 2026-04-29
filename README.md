@@ -49,8 +49,3 @@ various fixes for quiz creator
 list/grid view test + validation accountability
 # --- v. 0.23 ---
 readme update
-# --- v. 0.24 ---
-makla minor fix 
-"rudy to bardzo miła osoba która nie jest ogrem ani ukraińcem" - nikt nigdy
-# --- v. 0.25 ---
-github pages attempts
