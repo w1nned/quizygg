@@ -12,5 +12,5 @@ export default defineConfig({
     }),
     tailwindcss()
   ],
-  base: "/w1nned.github.io",
+  base: "/quizygg",
 })
