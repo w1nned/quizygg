@@ -6,7 +6,7 @@ import Results from "./components/Results";
 
 function App() {
   return (
-    <BrowserRouter basename="{process.env.w1nned.github.io/quizygg}">
+    <BrowserRouter>
     <div className="h-239 w-full bg-center bg-cover bg-[url(assets/bgs1.webp)]">
       <div className="p-6 max-w-3xl mx-auto">
 
