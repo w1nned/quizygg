@@ -1,26 +1,14 @@
 {
-<<<<<<< Updated upstream
   "name": "quizygg4p",
-=======
-  "name": "quizyGG",
-  "homepage": "https://w1nned.github.io/quizyGG",
-  "homepage": "https://w1nned.github.io/quizyGG/",
->>>>>>> Stashed changes
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-<<<<<<< Updated upstream
     "lint": "eslint .",
     "preview": "vite preview"
   },
-=======
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
-},
->>>>>>> Stashed changes
   "dependencies": {
     "@tailwindcss/vite": "^4.2.1",
     "react": "^19.2.0",
