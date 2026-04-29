@@ -154,28 +154,25 @@ function QuizCreator() {
   };
 
   const saveQuiz = () => {
-    saveQuestion()
+  saveQuestion();
 
-    setQuestions(questions => {
-      if (questions.length === 0 && !text) {
-        alert("Dodaj przynajmniej jedno pytanie");
-        return;
-      }
+  if (questions.length === 0 && !text) {
+    alert("Dodaj przynajmniej jedno pytanie");
+    return;
+  }
 
-      const quizzes = getQuizzes();
+  const quizzes = getQuizzes();
 
-      quizzes.push({
-        id: Date.now(),
-        title,
-        description,
-        questions
-      });
+  quizzes.push({
+    id: Date.now(),
+    title,
+    description,
+    questions
+  });
 
-      saveQuizzes(quizzes);
-      navigate("/");
-      return questions;
-    })
-  };
+  saveQuizzes(quizzes);
+  navigate("/");
+};
 
   const saveStateToHistory = () => {
     const newState = {
@@ -223,19 +220,25 @@ function QuizCreator() {
       </div>
 
       <input
-        className="border p-2 rounded-lg w-full mb-2 hover:border-green-500 hover:border-2"
+        className="w-full m-1 px-3 py-3 rounded-lg border border-gray-300 bg-white 
+        focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500
+        transition"
         placeholder="Nazwa quizu"
         onChange={(e) => setTitle(e.target.value)} />
 
       <input
-        className="border p-2 rounded-lg w-full mb-4 hover:border-green-500 hover:border-2"
+      className="w-full m-1 px-3 py-3 rounded-lg border border-gray-300 bg-white 
+        focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500
+        transition"
         placeholder="Opis"
         onChange={(e) => setDescription(e.target.value)} />
 
       <h2 className="font-semibold mb-2">Dodaj pytanie</h2>
 
       <input
-        className="border p-2 rounded-lg w-full mb-2 hover:border-green-500 hover:border-2"
+       className="w-full m-1 px-3 py-3 rounded-lg border border-gray-300 bg-white 
+        focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500
+        transition"
         placeholder="Treść pytania"
         value={text}
         onChange={(e) => {
@@ -244,7 +247,9 @@ function QuizCreator() {
         }} />
 
       <select
-        className="border rounded-sm p-2 mb-3 hover:border-green-500 hover:border-2"
+        className="px-3 py-2 rounded-lg border border-gray-300 bg-white 
+focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500
+transition"
         value={type}
         onChange={(e) => {
           setType(e.target.value);
@@ -258,7 +263,9 @@ function QuizCreator() {
         <div key={i} className="flex gap-2 mb-2">
 
           <input
-            className="border rounded-lg p-2 w-full hover:border-green-500 hover:border-2"
+            className="w-full m-1 px-3 py-3 rounded-lg border border-gray-300 bg-white 
+        focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500
+        transition"
             placeholder={`Odpowiedź ${i + 1}`}
             value={opt}
             onChange={(e) => {
@@ -269,7 +276,7 @@ function QuizCreator() {
             }} />
 
           <input
-            className="relative top-3 form-radio custom-radio text-green-600 tranform duration-300"
+            className="accent-green-600 cursor-pointer"
             type="radio"
             name="correct"
             checked={correct === i}
@@ -284,16 +291,16 @@ function QuizCreator() {
       {type === "boolean" && (
         <div className="mb-3">
 
-          <label className="mr-4">
+          <label className="mr-4 text-lg font-medium text-gray-800">
             <input
-              className="relative top-0.5 form-radio custom-radio text-green-600"
+              className="accent-green-600 cursor-pointer"
               type="radio"
               checked={correct === 0}
-              onChange={() => setCorrect(0)} /> Prawda</label>
+              onChange={() => setCorrect(0)} /> Prawda</label><br></br>
 
-          <label>
+          <label  className="mr-4 text-lg font-medium text-gray-800">
             <input
-              className="relative top-0.5 form-radio custom-radio text-green-600"
+              className="accent-green-600 cursor-pointer"
               type="radio"
               checked={correct === 1}
               onChange={() => setCorrect(1)} /> Fałsz</label>
@@ -304,11 +311,11 @@ function QuizCreator() {
       <div className="flex gap-2 mt-4 flex-wrap justify-between">
 
         <button onClick={prevQuestion} className="bg-gray-500 ml-3 mr-3 cursor-pointer text-gray-300 px-4 py-2 rounded hover:scale-110 hover:font-bold hover:text-white transform duration-100">
-          ⬅
+          Poprzednie
         </button>
 
         <button onClick={saveQuestion} className="bg-purple-500 mr-3 cursor-pointer text-purple-300 px-5 py-2 rounded hover:scale-110 hover:font-bold hover:text-white transform duration-100">
-          💾 Zapisz pytanie
+          Zapisz pytanie
         </button>
 
         {/*<button onClick={saveAndAddNew} className="bg-green-500 mr-3 cursor-pointer text-green-300 px-5 py-2 rounded hover:scale-110 hover:font-bold hover:text-white transform duration-100">
@@ -316,11 +323,11 @@ function QuizCreator() {
         </button>*/}
 
         <button onClick={saveAndAddNew} className="bg-blue-500 mr-3 cursor-pointer text-blue-300 px-5 py-2 rounded hover:scale-110 hover:font-bold hover:text-white transform duration-100">
-          ➕ Nowe pytanie
+          Nowe pytanie
         </button>
 
         <button onClick={nextQuestion} className="bg-gray-500 mr-2 cursor-pointer text-gray-300 px-5 py-2 rounded hover:scale-110 hover:font-bold hover:text-white transform duration-100">
-          ➡
+          Następne
         </button>
 
       </div>
