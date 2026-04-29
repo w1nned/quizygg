@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import BrowserRouter from "react-router-dom/BrowserRouter";
 import QuizList from "./components/QuizList";
 import QuizCreator from "./components/QuizCreator";
 import QuizPlayer from "./components/QuizPlayer";
