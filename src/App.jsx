@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import BrowserRouter from "react-router-dom/BrowserRouter";
 import QuizList from "./components/QuizList";
 import QuizCreator from "./components/QuizCreator";
 import QuizPlayer from "./components/QuizPlayer";
@@ -6,7 +7,7 @@ import Results from "./components/Results";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="{process.env.w1nned.github.io/quizygg}">
     <div className="h-239 w-full bg-center bg-cover bg-[url(assets/bgs1.webp)]">
       <div className="p-6 max-w-3xl mx-auto">
 
