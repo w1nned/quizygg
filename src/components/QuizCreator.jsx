@@ -153,10 +153,26 @@ function QuizCreator() {
     setCurrentIndex(currentIndex + 1);
   };
 
-  const saveQuiz = () => {
-  saveQuestion();
+ const saveQuiz = () => {
+  let updatedQuestions = [...questions];
 
-  if (questions.length === 0 && !text) {
+  if (text) {
+    const q = {
+      id: currentIndex !== null ? questions[currentIndex].id : Date.now(),
+      type,
+      question: text,
+      options: type === "single" ? options : ["Prawda", "Fałsz"],
+      correct
+    };
+
+    if (currentIndex !== null) {
+      updatedQuestions[currentIndex] = q;
+    } else {
+      updatedQuestions.push(q);
+    }
+  }
+
+  if (updatedQuestions.length === 0) {
     alert("Dodaj przynajmniej jedno pytanie");
     return;
   }
@@ -167,7 +183,7 @@ function QuizCreator() {
     id: Date.now(),
     title,
     description,
-    questions
+    questions: updatedQuestions
   });
 
   saveQuizzes(quizzes);
@@ -241,10 +257,7 @@ function QuizCreator() {
         transition"
         placeholder="Treść pytania"
         value={text}
-        onChange={(e) => {
-          setText(e.target.value);
-          saveStateToHistory();
-        }} />
+        onChange={(e) => setText(e.target.value)}/>
 
       <select
         className="px-3 py-2 rounded-lg border border-gray-300 bg-white 
